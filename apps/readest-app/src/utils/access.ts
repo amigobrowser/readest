@@ -70,7 +70,7 @@ export const isCloudSyncInPlan = (plan: UserPlan, customizationPurchased: boolea
  * Every gate goes through {@link isCloudSyncAllowed}, so this flag is the
  * whole toggle.
  */
-export const CLOUD_SYNC_REQUIRES_PREMIUM = true;
+export const CLOUD_SYNC_REQUIRES_PREMIUM = false;
 
 /**
  * Whether third-party cloud sync is available for a plan. Falls back to the
@@ -98,7 +98,7 @@ export const isTTSCacheInPlan = (plan: UserPlan, customizationPurchased: boolean
  * automatic playback cache (audio kept as the user listens) is unaffected —
  * only the explicit download UI is gated.
  */
-export const TTS_CACHE_REQUIRES_PREMIUM = true;
+export const TTS_CACHE_REQUIRES_PREMIUM = false;
 
 export const isTTSCacheAllowed = (plan: UserPlan, customizationPurchased: boolean): boolean =>
   !TTS_CACHE_REQUIRES_PREMIUM || isTTSCacheInPlan(plan, customizationPurchased);
@@ -117,7 +117,7 @@ export const isAbsOfflineInPlan = (plan: UserPlan, customizationPurchased: boole
  * Master switch for the offline-download paywall, mirroring
  * {@link TTS_CACHE_REQUIRES_PREMIUM}. Flipping it off ungates every plan.
  */
-export const ABS_OFFLINE_REQUIRES_PREMIUM = true;
+export const ABS_OFFLINE_REQUIRES_PREMIUM = false;
 
 export const isAbsOfflineAllowed = (plan: UserPlan, customizationPurchased: boolean): boolean =>
   !ABS_OFFLINE_REQUIRES_PREMIUM || isAbsOfflineInPlan(plan, customizationPurchased);
@@ -142,7 +142,7 @@ export const isNearbyPairingInPlan = (plan: UserPlan, customizationPurchased: bo
  * Flipping it off ungates every plan. Existing pairing records always
  * persist; only the auto-accept behavior is gated.
  */
-export const NEARBY_PAIRING_REQUIRES_PREMIUM = true;
+export const NEARBY_PAIRING_REQUIRES_PREMIUM = false;
 
 export const isNearbyPairingAllowed = (plan: UserPlan, customizationPurchased: boolean): boolean =>
   !NEARBY_PAIRING_REQUIRES_PREMIUM || isNearbyPairingInPlan(plan, customizationPurchased);
@@ -165,7 +165,7 @@ export const getCustomizationPurchased = (token: string): boolean => {
  * presents, so including it would hand every premium feature to a buyer who
  * only wanted more space.
  */
-export const PREMIUM_PLANS: readonly UserPlan[] = ['plus', 'pro'];
+export const PREMIUM_PLANS: readonly UserPlan[] = ['free', 'plus', 'pro'];
 
 /**
  * Self-hosted deployments unlock every premium feature, signed in or not.
